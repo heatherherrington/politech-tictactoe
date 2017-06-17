@@ -1,7 +1,6 @@
 class Game
-  attr_reader :board
-
   def initialize
+    # I was going to refactor this string into an array of arrays but ran out of time
     @board = "
         A   B   C
       +---+---+---+
@@ -284,8 +283,11 @@ class Game
       @board[127] = @computer_marker
     elsif @board[55] == @player_marker && @board[127] == @player_marker && @board[91] == " "
       @board[91] = @computer_marker
-    else
+    elsif @board[127] == @player_marker && @board[91] == @player_marker && @board[55] == " "
       @board[55] = @computer_marker
+    else
+      puts "There is no way for anyone to win. You have tied."
+      exit
     end
   end
 
@@ -298,6 +300,7 @@ class Game
         puts "Player " + @board[i] + " has won!"
         @victory = "true"
         if @victory == "true"
+          puts @board
           return true
         end
       end
@@ -311,6 +314,7 @@ class Game
         puts "Player " + @board[j] + " has won!"
         @victory = "true"
         if @victory == "true"
+          puts @board
           return true
         end
       end
@@ -322,6 +326,7 @@ class Game
       puts "Player " + @board[47] + " has won!"
       @victory = "true"
       if @victory == "true"
+        puts @board
         return true
       end
     end
@@ -330,6 +335,7 @@ class Game
       puts "Player " + @board[55] + " has won!"
       @victory = "true"
       if @victory == "true"
+        puts @board
         return true
       end
     end
